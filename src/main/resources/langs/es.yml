@@ -1,0 +1,41 @@
+# BossBarNotify mensajes en español
+
+general:
+  prefix: "&8[&eBossBarNotify&8] &r"
+  no-permission: "&c¡No tienes permiso para usar este comando!"
+  player-only: "&c¡Este comando solo puede ser utilizado por jugadores!"
+  invalid-command: "&cComando inválido. Usa &7/bbnotify help &cpara más información."
+  reloaded: "&a¡Configuración recargada con éxito!"
+
+commands:
+  help:
+    title: "&e=== Ayuda de BossBarNotify ==="
+    reload: "&e/bbnotify reload &7- Recarga la configuración del plugin"
+    create: "&e/bbnotify create <id> <mensaje> &7- Crea una nueva barra de jefe"
+    edit: "&e/bbnotify edit <id> <propiedad> <valor> &7- Edita una barra de jefe"
+    delete: "&e/bbnotify delete <id> &7- Elimina una barra de jefe"
+    list: "&e/bbnotify list &7- Lista todas las barras de jefe"
+    
+  create:
+    success: "&aBarra de jefe creada con ID: &e{id}"
+    exists: "&c¡Ya existe una barra de jefe con ID &e{id}&c!"
+    usage: "&cUso: &7/bbnotify create <id> <mensaje>"
+    
+  edit:
+    success: "&aActualizada &e{property} &apara la barra de jefe &e{id}"
+    not-found: "&cNo se encontró ninguna barra de jefe con ID: &e{id}"
+    invalid-property: "&cPropiedad inválida. Propiedades válidas: &7mensaje, color, estilo, tiempo"
+    invalid-color: "&cColor inválido. Colores válidos: &7BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW"
+    invalid-style: "&cEstilo inválido. Estilos válidos: &7SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20"
+    invalid-time: "&cEl tiempo debe ser un número positivo (segundos)"
+    usage: "&cUso: &7/bbnotify edit <id> <propiedad> <valor>"
+    
+  delete:
+    success: "&aBarra de jefe eliminada con ID: &e{id}"
+    not-found: "&cNo se encontró ninguna barra de jefe con ID: &e{id}"
+    usage: "&cUso: &7/bbnotify delete <id>"
+    
+  list:
+    title: "&e=== Mensajes de Barra de Jefe ==="
+    entry: "&e{id}&7: {message} &7(&e{color}&7, &e{time}s&7)"
+    none: "&7No hay barras de jefe configuradas."

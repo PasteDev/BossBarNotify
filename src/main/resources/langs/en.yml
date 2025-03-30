@@ -1,0 +1,41 @@
+# BossBarNotify English messages
+
+general:
+  prefix: "&8[&eBossBarNotify&8] &r"
+  no-permission: "&cYou don't have permission to use this command!"
+  player-only: "&cThis command can only be used by players!"
+  invalid-command: "&cInvalid command. Use &7/bbnotify help &cfor information."
+  reloaded: "&aConfiguration reloaded successfully!"
+
+commands:
+  help:
+    title: "&e=== BossBarNotify Help ==="
+    reload: "&e/bbnotify reload &7- Reload the plugin configuration"
+    create: "&e/bbnotify create <id> <message> &7- Create a new boss bar"
+    edit: "&e/bbnotify edit <id> <property> <value> &7- Edit a boss bar"
+    delete: "&e/bbnotify delete <id> &7- Delete a boss bar"
+    list: "&e/bbnotify list &7- List all boss bars"
+    
+  create:
+    success: "&aCreated boss bar with ID: &e{id}"
+    exists: "&cA boss bar with ID &e{id} &calready exists!"
+    usage: "&cUsage: &7/bbnotify create <id> <message>"
+    
+  edit:
+    success: "&aUpdated &e{property} &afor boss bar &e{id}"
+    not-found: "&cNo boss bar found with ID: &e{id}"
+    invalid-property: "&cInvalid property. Valid properties: &7message, color, style, time"
+    invalid-color: "&cInvalid color. Valid colors: &7BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW"
+    invalid-style: "&cInvalid style. Valid styles: &7SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20"
+    invalid-time: "&cTime must be a positive number (seconds)"
+    usage: "&cUsage: &7/bbnotify edit <id> <property> <value>"
+    
+  delete:
+    success: "&aDeleted boss bar with ID: &e{id}"
+    not-found: "&cNo boss bar found with ID: &e{id}"
+    usage: "&cUsage: &7/bbnotify delete <id>"
+    
+  list:
+    title: "&e=== Boss Bar Messages ==="
+    entry: "&e{id}&7: {message} &7(&e{color}&7, &e{time}s&7)"
+    none: "&7No boss bars configured."

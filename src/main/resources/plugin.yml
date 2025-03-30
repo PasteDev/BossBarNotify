@@ -1,0 +1,33 @@
+name: BossBarNotify
+version: 1.0
+main: pastelito.dev.bossBarNotify.BossBarNotify
+api-version: 1.13
+description: A plugin for displaying configurable BossBars with messages
+author: MrPastelitoo_
+
+commands:
+  bbnotify:
+    description: Main command for BossBarNotify plugin
+    aliases: [bbn]
+    usage: /bbnotify <reload|create|edit|delete|list|help>
+    permission: bossbarnotify.command
+
+permissions:
+  bossbarnotify.command:
+    description: Allows access to BossBarNotify commands
+    default: op
+  bossbarnotify.reload:
+    description: Allows reloading the plugin configuration
+    default: op
+  bossbarnotify.create:
+    description: Allows creating new boss bars
+    default: op
+  bossbarnotify.edit:
+    description: Allows editing existing boss bars
+    default: op
+  bossbarnotify.delete:
+    description: Allows deleting boss bars
+    default: op
+  bossbarnotify.list:
+    description: Allows listing all boss bars
+    default: op

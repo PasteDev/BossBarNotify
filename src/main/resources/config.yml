@@ -1,0 +1,36 @@
+# BossBarNotify Configuration
+
+# The language for messages (en, es)
+Language: en
+
+BossBarMessages:
+  # Enable or disable the boss bar messages
+  Enabled: true
+  
+  # If enabled, boss bars will only show in the worlds listed below
+  World_Whitelist_Enabled: false
+  
+  # Show messages in random order
+  Random_Order: false
+  
+  # Hide the progress bar
+  No_Progress: false
+  
+  # List of worlds where boss bars will show (if World_Whitelist_Enabled is true)
+  World_Whitelist:
+    - world
+    
+  # Boss bar messages configuration
+  # You can add more messages by following the same format:
+  # Messages:
+  #   UniqueMessageID:
+  #     Message: 'Your message with &color codes'
+  #     Color: COLOR_NAME (BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW)
+  #     Style: STYLE_TYPE (SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20) or number (0-6)
+  #     Time: seconds to display
+  Messages:
+    Example:
+      Message: '&e&l(!) &fThis is an example message. Use &e/command&f!'
+      Color: YELLOW
+      Style: '6'
+      Time: 10

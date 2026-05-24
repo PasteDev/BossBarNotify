@@ -1,12 +1,12 @@
 package pastelito.dev.bossBarNotify.managers;
 
-import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import pastelito.dev.bossBarNotify.BossBarNotify;
 import pastelito.dev.bossBarNotify.models.BossBarMessage;
+import pastelito.dev.bossBarNotify.util.MessageParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +57,7 @@ public class ConfigManager {
             
             if (messageSection == null) continue;
             
-            String message = ChatColor.translateAlternateColorCodes('&', 
-                    messageSection.getString("Message", ""));
+            String message = MessageParser.parse(messageSection.getString("Message", ""));
             
             BarColor color;
             try {

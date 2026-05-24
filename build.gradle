@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'com.gradleup.shadow' version '8.3.5'
 }
 
 group = 'pastelito.dev'
@@ -9,32 +8,13 @@ version = '1.0'
 repositories {
     mavenCentral()
     maven {
-        name = "spigotmc-repo"
-        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
-    }
-    maven {
-        name = "sonatype"
-        url = "https://oss.sonatype.org/content/groups/public/"
+        name = "papermc"
+        url = "https://repo.papermc.io/repository/maven-public/"
     }
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
-    implementation("net.kyori:adventure-text-minimessage:4.17.0")
-    implementation("net.kyori:adventure-text-serializer-legacy:4.17.0")
-}
-
-shadowJar {
-    archiveClassifier.set('')
-    relocate 'net.kyori', 'pastelito.dev.bossBarNotify.libs.kyori'
-}
-
-jar {
-    enabled = false
-}
-
-build {
-    dependsOn shadowJar
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
 }
 
 def targetJavaVersion = 21

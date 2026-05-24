@@ -6,7 +6,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import pastelito.dev.bossBarNotify.BossBarNotify;
 import pastelito.dev.bossBarNotify.models.BossBarMessage;
-import pastelito.dev.bossBarNotify.util.MessageParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +56,7 @@ public class ConfigManager {
             
             if (messageSection == null) continue;
             
-            String message = MessageParser.parse(messageSection.getString("Message", ""));
+            String message = messageSection.getString("Message", "");
             
             BarColor color;
             try {

@@ -11,9 +11,29 @@ public final class MessageParser {
 
     private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
     private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
+    private static final LegacyComponentSerializer LEGACY_AMPERSAND = LegacyComponentSerializer.builder()
+            .character('&')
+            .hexColors()
+            .useUnusualXRepeatedCharacterHexFormat()
+            .build();
     private static final Pattern MINIMESSAGE_TAG = Pattern.compile("<[^>]+>");
 
     private MessageParser() {
+    }
+
+    public static Component parseComponent(String input) {
+        if (input == null || input.isEmpty()) {
+            return Component.empty();
+        }
+
+        if (MINIMESSAGE_TAG.matcher(input).find()) {
+            try {
+                return MINI_MESSAGE.deserialize(input);
+            } catch (Exception ignored) {
+            }
+        }
+
+        return LEGACY_AMPERSAND.deserialize(ChatColor.translateAlternateColorCodes('&', input));
     }
 
     public static String parse(String input) {
@@ -21,14 +41,6 @@ public final class MessageParser {
             return "";
         }
 
-        if (MINIMESSAGE_TAG.matcher(input).find()) {
-            try {
-                Component component = MINI_MESSAGE.deserialize(input);
-                return LEGACY.serialize(component);
-            } catch (Exception ignored) {
-            }
-        }
-
-        return ChatColor.translateAlternateColorCodes('&', input);
+        return LEGACY.serialize(parseComponent(input));
     }
 }

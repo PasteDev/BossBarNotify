@@ -24,7 +24,7 @@ BossBarMessages:
   # You can add more messages by following the same format:
   # Messages:
   #   UniqueMessageID:
-  #     Message: 'Your message with &color codes or MiniMessage tags like <yellow><bold>text</bold></yellow>'
+  #     Message: 'MiniMessage (&color, <yellow>, <lang:qcore.key>)'
   #     Color: COLOR_NAME (BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW)
   #     Style: STYLE_TYPE (SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20) or number (0-6)
   #     Time: seconds to display

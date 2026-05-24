@@ -1,9 +1,10 @@
 name: BossBarNotify
 version: 1.0
 main: pastelito.dev.bossBarNotify.BossBarNotify
-api-version: 1.13
+api-version: '1.21'
 description: A plugin for displaying configurable BossBars with messages
 author: MrPastelitoo_
+softdepend: [QCore]
 
 commands:
   bbnotify:

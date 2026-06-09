@@ -2,6 +2,7 @@ package pastelito.dev.bossBarNotify.util;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 
@@ -28,7 +29,7 @@ public final class MessageParser {
 
         if (MINIMESSAGE_TAG.matcher(input).find()) {
             try {
-                return MINI_MESSAGE.deserialize(input);
+                return MINI_MESSAGE.deserialize(input, TagResolver.empty());
             } catch (Exception ignored) {
             }
         }

@@ -71,3 +71,4 @@ atlassian-ide-plugin.xml
 *.lock
 build/tmp/compileJava/previous-compilation-data.bin
 /bin
+/gradle

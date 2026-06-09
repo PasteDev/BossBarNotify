@@ -1,12 +1,12 @@
 package pastelito.dev.bossBarNotify.managers;
 
+import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitTask;
 import pastelito.dev.bossBarNotify.BossBarNotify;
 import pastelito.dev.bossBarNotify.models.BossBarMessage;
 import pastelito.dev.bossBarNotify.util.MessageParser;
@@ -22,7 +22,8 @@ public class BossBarManager {
     private BossBar activeBossBar;
     private int currentMessageIndex;
     private List<BossBarMessage> messagesQueue;
-    private BukkitTask progressTask;
+
+    private ScheduledTask progressTask;
 
     public BossBarManager(BossBarNotify plugin) {
         this.plugin = plugin;
@@ -61,7 +62,7 @@ public class BossBarManager {
             scheduleBossBarProgress(message.getTime());
         }
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+        Bukkit.getGlobalRegionScheduler().runDelayed(plugin, task -> {
             removeBossBar();
 
             currentMessageIndex = (currentMessageIndex + 1) % messagesQueue.size();
@@ -96,24 +97,18 @@ public class BossBarManager {
 
         final int totalTicks = durationSeconds * 20;
         final double progressDecrement = 1.0 / totalTicks;
+        final int[] ticksElapsed = {0};
 
-        progressTask = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
-            private int ticksElapsed = 0;
-
-            @Override
-            public void run() {
-                if (activeBossBar == null || ++ticksElapsed > totalTicks) {
-                    if (progressTask != null) {
-                        progressTask.cancel();
-                        progressTask = null;
-                    }
-                    return;
-                }
-
-                double progress = 1.0 - (progressDecrement * ticksElapsed);
-                if (progress < 0) progress = 0;
-                activeBossBar.progress((float) progress);
+        progressTask = Bukkit.getGlobalRegionScheduler().runAtFixedRate(plugin, task -> {
+            if (activeBossBar == null || ++ticksElapsed[0] > totalTicks) {
+                task.cancel();
+                progressTask = null;
+                return;
             }
+
+            double progress = 1.0 - (progressDecrement * ticksElapsed[0]);
+            if (progress < 0) progress = 0;
+            activeBossBar.progress((float) progress);
         }, 1L, 1L);
     }
 
@@ -132,7 +127,7 @@ public class BossBarManager {
     }
 
     public void stopBossBarSystem() {
-        Bukkit.getScheduler().cancelTasks(plugin);
+        Bukkit.getGlobalRegionScheduler().cancelTasks(plugin);
         removeBossBar();
         currentMessageIndex = 0;
         progressTask = null;

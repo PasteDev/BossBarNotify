@@ -9,6 +9,7 @@ import pastelito.dev.bossBarNotify.models.BossBarMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class ConfigManager {
@@ -58,13 +59,7 @@ public class ConfigManager {
             
             String message = messageSection.getString("Message", "");
             
-            BarColor color;
-            try {
-                color = BarColor.valueOf(messageSection.getString("Color", "WHITE"));
-            } catch (IllegalArgumentException e) {
-                plugin.getLogger().warning("Invalid color for message " + key + ". Using WHITE.");
-                color = BarColor.WHITE;
-            }
+            BarColor color = parseBarColor(messageSection.getString("Color", "WHITE"), key);
             
             BarStyle style;
             String styleStr = messageSection.getString("Style", "SOLID");
@@ -103,6 +98,27 @@ public class ConfigManager {
         }
     }
     
+    private BarColor parseBarColor(String rawColor, String messageId) {
+        if (rawColor == null || rawColor.isBlank()) {
+            return BarColor.WHITE;
+        }
+
+        String normalized = rawColor.trim().toUpperCase(Locale.ROOT);
+        if ("DISCORD".equals(normalized)) {
+            return BarColor.PURPLE;
+        }
+
+        try {
+            return BarColor.valueOf(normalized);
+        } catch (IllegalArgumentException e) {
+            plugin.getLogger().warning(
+                    "Invalid color '" + rawColor + "' for message " + messageId
+                            + ". Valid values: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW. Using WHITE."
+            );
+            return BarColor.WHITE;
+        }
+    }
+
     public boolean isBossBarEnabled() {
         return bossBarEnabled;
     }
